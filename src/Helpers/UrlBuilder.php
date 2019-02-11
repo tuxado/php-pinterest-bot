@@ -11,6 +11,7 @@ class UrlBuilder
      * Login
      */
     const RESOURCE_LOGIN = 'resource/UserSessionResource/create/';
+    const LOGIN_EMAIL_EXIST_RESOURCE = '_ngjs/resource/EmailExistsResource/get/';
 
     /**
      * Password
