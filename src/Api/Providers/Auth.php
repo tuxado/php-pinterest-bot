@@ -8,6 +8,7 @@ use seregazhuk\PinterestBot\Api\Forms\Registration;
 use seregazhuk\PinterestBot\Api\Providers\Core\Provider;
 use seregazhuk\PinterestBot\Api\Traits\ResolvesCurrentUser;
 use seregazhuk\PinterestBot\Api\Traits\SendsRegisterActions;
+use seregazhuk\PinterestBot\Api\Traits\EmailExistsResource;
 
 class Auth extends Provider
 {
@@ -180,7 +181,13 @@ class Auth extends Provider
      */
     protected function processLogin($username, $password)
     {
-        $this->request->loadCookiesFor($username);
+
+        if(!$this->getLoginEmailExistsResource(['email' => $username]))
+	{
+            return false;
+	}
+
+	$this->request->loadCookiesFor($username);
 
         $credentials = [
             'username_or_email' => $username,
