@@ -5,6 +5,7 @@ namespace seregazhuk\PinterestBot\Api;
 use seregazhuk\PinterestBot\Helpers\Cookies;
 use seregazhuk\PinterestBot\Helpers\UrlBuilder;
 use seregazhuk\PinterestBot\Api\Contracts\HttpClient;
+use function seregazhuk\PinterestBot\url_slug;
 
 /**
  * Class CurlHttpClient.
@@ -165,7 +166,7 @@ class CurlHttpClient implements HttpClient
      */
     protected function getVerbosePath($url = '')
     {
-        $date   = new DateTime(); //this returns the current date time
+        $date   = new \DateTime(); //this returns the current date time
         $date = $date->format('Y-m-d-H-i-s');
         return sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::VERBOSE_PREFIX . '-' . $date . '-' . url_slug($url) . '.' . self::VERBOSE_FILE_EXTENSION;
     }
