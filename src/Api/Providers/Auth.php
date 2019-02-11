@@ -12,7 +12,7 @@ use seregazhuk\PinterestBot\Api\Traits\EmailExistsResource;
 
 class Auth extends Provider
 {
-    use SendsRegisterActions, ResolvesCurrentUser;
+    use SendsRegisterActions, ResolvesCurrentUser, EmailExistsResource;
 
     /**
      * @var array
