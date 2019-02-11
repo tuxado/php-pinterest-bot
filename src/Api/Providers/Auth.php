@@ -159,8 +159,8 @@ class Auth extends Provider
             return false;
         }
         
-  		$data = $registrationForm->getData();
-		$this->request->loadCookiesFor($data['email']);
+  	$data = $registrationForm->getData();
+	$this->request->loadCookiesFor($data['email']);
 
         if (!$this->post(UrlBuilder::RESOURCE_CREATE_REGISTER, $registrationForm->toArray())) {
             return false;
