@@ -167,7 +167,7 @@ class CurlHttpClient implements HttpClient
     {
         $date   = new DateTime(); //this returns the current date time
         $date = $date->format('Y-m-d-H-i-s');
-        return sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::VERBOSE_PREFIX . '-' . $date . '-' . url_slug($url) . '.' .  . self::VERBOSE_FILE_EXTENSION;
+        return sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::VERBOSE_PREFIX . '-' . $date . '-' . url_slug($url) . '.' . self::VERBOSE_FILE_EXTENSION;
     }
 
     /**
