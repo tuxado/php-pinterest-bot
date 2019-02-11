@@ -11,6 +11,10 @@ use seregazhuk\PinterestBot\Api\Contracts\HttpClient;
  */
 class CurlHttpClient implements HttpClient
 {
+    
+    const VERBOSE_PREFIX = 'verbose-php-pinterest-bot';
+    const VERBOSE_FILE_EXTENSION = 'txt';
+   
     /**
      * Custom CURL options for requests.
      *
@@ -125,6 +129,13 @@ class CurlHttpClient implements HttpClient
         }
 
         curl_setopt_array($this->curl, $this->makeHttpOptions($postString));
+        
+        curl_setopt($this->curl, CURLOPT_VERBOSE, true);
+
+        $verbose = $this->getVerbosePath($url)
+        $verbose = fopen($verbose, 'a+');
+        
+        curl_setopt($this->curl, CURLOPT_STDERR, $verbose);
 
         return $this;
     }
@@ -134,6 +145,7 @@ class CurlHttpClient implements HttpClient
      */
     protected function getDefaultHttpOptions()
     {
+        
         return [
             CURLOPT_REFERER        => UrlBuilder::URL_BASE,
             CURLOPT_ENCODING       => 'gzip,deflate,br',
@@ -145,6 +157,18 @@ class CurlHttpClient implements HttpClient
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_FOLLOWLOCATION => true,
         ];
+        
+    }
+    
+     /**
+     * @param string $username
+     * @return string
+     */
+    protected function getVerbosePath($url = '')
+    {
+        $date   = new DateTime(); //this returns the current date time
+        $date = $date->format('Y-m-d-H-i-s');
+        return sys_get_temp_dir() . DIRECTORY_SEPARATOR . self::VERBOSE_PREFIX . '-' . $date . '-' . url_slug($url) . '.' .  . self::VERBOSE_FILE_EXTENSION;
     }
 
     /**
