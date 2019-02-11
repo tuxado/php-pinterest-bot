@@ -8,9 +8,9 @@ trait EmailExistsResource
      * Get list of available locales
      * @return array
      */
-    public function getEmailExistsResource($requestOptions)
+    public function getLoginEmailExistsResource($requestOptions)
     {
-        return $this->get(UrlBuilder::EMAIL_EXIST_RESOURCE, $requestOptions);
+        return $this->get(UrlBuilder::LOGIN_EMAIL_EXIST_RESOURCE, $requestOptions);
     }
 
 }
