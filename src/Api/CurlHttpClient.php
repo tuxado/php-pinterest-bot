@@ -131,12 +131,14 @@ class CurlHttpClient implements HttpClient
 
         curl_setopt_array($this->curl, $this->makeHttpOptions($postString));
         
+        /*
         curl_setopt($this->curl, CURLOPT_VERBOSE, true);
 
         $verbose = fopen($this->getVerbosePath($url), 'a+');
         
         curl_setopt($this->curl, CURLOPT_STDERR, $verbose);
-
+        */
+            
         return $this;
     }
 
